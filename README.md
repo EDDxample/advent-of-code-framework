@@ -7,7 +7,7 @@ CLI for fetching [AOC's](https://adventofcode.com/about) data
 Find your session cookie and put it inside a `.token` file.
 
 ```
-> python aoc.py [] <> <>
+> python aoc.py [gen|run] <year> <day>
 ```
 
 ## Progress
