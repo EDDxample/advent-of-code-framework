@@ -28,7 +28,7 @@ def gen_day(year, day):
     path = f'aoc/{year}/{day}'
     puzzle_input = get_input(year, day)
     write_file(path+'/input.txt', puzzle_input)
-    write_file(path+'/description.txt', '')
+    write_file(path+'/description.txt', f'https://adventofcode.com/{year}/day/{day}')
     write_file(path+'/solution.py', '\ndef part1(puzzle_in):\n\treturn \'not implemented yet\'\n\ndef part2(puzzle_in):\n\treturn \'not implemented yet\'\n')
 
 def get_input(year, day):
