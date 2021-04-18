@@ -1,4 +1,4 @@
-import requests, os, errno, sys, importlib
+import requests, os, errno, sys, importlib, time
 
 def main():
     try:
@@ -20,8 +20,14 @@ def run_solutions(year, day):
     puzzle_input = read_file(f'{path}/input.txt')
 
     print(f'\n--- AOC {year} day {day} ---')
-    print('part 1:', module.part1(puzzle_input))
-    print('part 2:', module.part2(puzzle_input))
+    t0 = time.time()
+    x = module.part1(puzzle_input)
+    t1 = time.time()
+    print(f'part 1: {x} {((t1 - t0) * 1000):.3f}ms')
+    t0 = time.time()
+    x = module.part2(puzzle_input)
+    t1 = time.time()
+    print(f'part 2: {x} {((t1 - t0) * 1000):.3f}ms')
     print()
 
 def gen_day(year, day):
