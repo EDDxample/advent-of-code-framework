@@ -45,7 +45,7 @@ def gen_day(year, day):
     puzzle_input = get_input(year, day)
     write_file(path+'/input.txt', puzzle_input)
     write_file(path+'/description.txt', f'https://adventofcode.com/{year}/day/{day}')
-    write_file(path+'/solution.py', '\ndef part1(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef part2(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef faster_part1(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef faster_part2(puzzle_in: str):\n\treturn \'not implemented yet\'\n')
+    write_file(path+'/solution.py', '\ndef part1(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef part2(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef faster_part1(puzzle_in: str):\n\traise \'not implemented yet\'\n\ndef faster_part2(puzzle_in: str):\n\traise \'not implemented yet\'\n')
 
 def get_input(year, day):
     with open('.token') as token:
