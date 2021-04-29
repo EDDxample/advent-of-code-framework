@@ -3,8 +3,6 @@ import requests, os, errno, sys, importlib, time
 def main():
     try:
         _, mode, year, day = sys.argv
-        path = f'aoc/{year}/{day}'
-
         if mode == 'gen': gen_day(year, day)
         if mode == 'run': run_solutions(year, day)
 
@@ -15,7 +13,7 @@ def main():
 
 
 def run_solutions(year, day):
-    path = f'aoc/{year}/{day}'
+    path = f'aoc/{year}/{int(day):02}'
     module = load_source(f'{path}/solution.py')
     puzzle_input = read_file(f'{path}/input.txt')
 
@@ -41,7 +39,7 @@ def run_solutions(year, day):
     except: pass
 
 def gen_day(year, day):
-    path = f'aoc/{year}/{day}'
+    path = f'aoc/{year}/{int(day):02}'
     puzzle_input = get_input(year, day)
     write_file(path+'/input.txt', puzzle_input)
     write_file(path+'/description.txt', f'https://adventofcode.com/{year}/day/{day}')
