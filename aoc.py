@@ -50,7 +50,7 @@ def get_input(year, day):
         return requests.get(f'https://adventofcode.com/{year}/day/{day}/input', cookies={ 'session': token.read() }).text
 def get_description(year, day):
     with open('.token') as token:
-        desc_pattern = re.compile(r'<article class="day-desc">[<>:!%,.()?"*\'\w\-\+\\\s\=\/\n]*<\/article>')
+        desc_pattern = re.compile(r'<article class="day-desc">[<>:;!%,#.()?"*\'\[\]\w\-\+\\\s\=\/\n]*<\/article>')
         page = requests.get(f'https://adventofcode.com/{year}/day/{day}', cookies={ 'session': token.read() }).text
         puzzles = re.findall(desc_pattern, page)
         return '\n'.join(map(lambda s: markdownify(s, heading_style="ATX"), puzzles))
