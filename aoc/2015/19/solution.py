@@ -17,7 +17,7 @@ def get_pattern_locations(dna, pattern):
 
 def part1(puzzle_in: str):
 	flag = False
-	trans = defaultdict(list)
+	rules = defaultdict(list)
 	dna = ''
 	
 	molecules = set()
@@ -33,11 +33,11 @@ def part1(puzzle_in: str):
 
 		else:
 			match = pattern.match(line)
-			trans[match[1]].append(match[2])
+			rules[match[1]].append(match[2])
 
-	# apply transformations ===============
+	# apply rules ===============
 
-	for key, vals in trans.items():
+	for key, vals in rules.items():
 		for pos in get_pattern_locations(dna, key):
 			for val in vals:
 				molecules.add(replace_string(dna, key, val, pos))
@@ -46,7 +46,7 @@ def part1(puzzle_in: str):
 
 def part2(puzzle_in: str):
 	flag = False
-	trans = defaultdict(list)
+	rules = defaultdict(list)
 	dna = ''
 	
 	molecules = set()
@@ -62,7 +62,7 @@ def part2(puzzle_in: str):
 
 		else:
 			match = pattern.match(line)
-			trans[match[2]].append(match[1])
+			rules[match[2]].append(match[1])
 
 	# solution ===============
 	
@@ -71,7 +71,7 @@ def part2(puzzle_in: str):
 
 	while target != 'e':
 		tmp = target
-		for key, vals in trans.items():
+		for key, vals in rules.items():
 			if key not in target: continue
 
 			for val in vals:
@@ -80,7 +80,7 @@ def part2(puzzle_in: str):
 		if tmp == target:
 			target = dna
 			steps = 0
-			shuffle(dna)
+			shuffle(rules) # wtf...
 	return steps
 
 
