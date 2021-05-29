@@ -38,4 +38,4 @@ Find your session cookie and put it inside a `.token` file.
 | 22  | 🌟🌟 |      |      |      |      |      |
 | 23  | 🌟🌟 |      |      |      |      |      |
 | 24  | 🌟🌟 |      |      |      |      |      |
-| 25  |      |      |      |      |      |      |
+| 25  | 🌟🌟 |      |      |      |      |      |
