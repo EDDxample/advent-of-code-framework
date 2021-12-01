@@ -27,9 +27,7 @@ def faster_part2(puzzle_in: str):
 	d0 = depths[0]
 	d1 = depths[1]
 	count = 0
-	for depth in depths[2:]:
-		d2 = depth
-		if d0 < d2:
+	for i in range(3, len(depths)):
+		if depths[i - 3] < depths[i]:
 			count += 1
-		d0, d1 = d1, d2
 	return count
