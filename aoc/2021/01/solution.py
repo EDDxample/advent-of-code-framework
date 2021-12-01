@@ -13,7 +13,7 @@ def part2(puzzle_in: str):
 	previous = None
 	count = 0
 	for i, depth in enumerate(depths[:-2]):
-		current = sum([depth, depths[i+1], depths[i+2]])
+		current = depth + depths[i+1] + depths[i+2]
 		if previous and previous < current:
 			count += 1
 		previous = current
@@ -23,4 +23,13 @@ def faster_part1(puzzle_in: str):
 	raise 'not implemented yet'
 
 def faster_part2(puzzle_in: str):
-	raise 'not implemented yet'
+	depths = list(map(int, puzzle_in.splitlines()))
+	d0 = depths[0]
+	d1 = depths[1]
+	count = 0
+	for depth in depths[2:]:
+		d2 = depth
+		if d0 < d2:
+			count += 1
+		d0, d1 = d1, d2
+	return count
