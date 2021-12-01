@@ -31,12 +31,14 @@ def run_solutions(year, day):
         x = module.faster_part1(puzzle_input)
         t1 = time.time()
         print(f'faster part 1: {x} {((t1 - t0) * 1000):.3f}ms')
+    except: pass
+    try:
         t0 = time.time()
         x = module.faster_part2(puzzle_input)
         t1 = time.time()
         print(f'faster part 2: {x} {((t1 - t0) * 1000):.3f}ms')
-        print()
     except: pass
+    print()
 
 def gen_day(year, day):
     path = f'aoc/{year}/{int(day):02}'
