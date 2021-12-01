@@ -68,6 +68,9 @@ def try_solution(puzzle_input, fun, name):
         t1 = time.perf_counter()
         ms = (t1 - t0) * 1000
         print(f'{name}\t{result}\t{ms:.3f}ms')
-    except: pass
+    except BaseException as err:
+        if name[0] != 'f':
+            print(err)
+
 
 if __name__ == '__main__': main()
