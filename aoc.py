@@ -18,25 +18,17 @@ def run_solutions(year, day):
     puzzle_input = read_file(f'{path}/input.txt')
 
     print(f'\n--- AOC {year} day {day} ---')
-    t0 = time.time()
-    x = module.part1(puzzle_input)
-    t1 = time.time()
-    print(f'part 1: {x} {((t1 - t0) * 1000):.3f}ms')
-    t0 = time.time()
-    x = module.part2(puzzle_input)
-    t1 = time.time()
-    print(f'part 2: {x} {((t1 - t0) * 1000):.3f}ms')
+    result, ms = time_function(puzzle_input, module.part1)
+    print(f'part 1: {result} {ms:.3f}ms')
+    result, ms = time_function(puzzle_input, module.part2)
+    print(f'part 2: {result} {ms:.3f}ms')
     try:
-        t0 = time.time()
-        x = module.faster_part1(puzzle_input)
-        t1 = time.time()
-        print(f'faster part 1: {x} {((t1 - t0) * 1000):.3f}ms')
+        result, ms = time_function(puzzle_input, module.faster_part1)
+        print(f'faster part 1: {result} {ms:.3f}ms')
     except: pass
     try:
-        t0 = time.time()
-        x = module.faster_part2(puzzle_input)
-        t1 = time.time()
-        print(f'faster part 2: {x} {((t1 - t0) * 1000):.3f}ms')
+        result, ms = time_function(puzzle_input, module.faster_part2)
+        print(f'faster part 2: {result} {ms:.3f}ms')
     except: pass
     print()
 
@@ -76,5 +68,11 @@ def load_source(path):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+def time_function(puzzle_input, fun):
+    t0 = time.perf_counter()
+    x = fun(puzzle_input)
+    t1 = time.perf_counter()
+    return x, (t1 - t0) * 1000
 
 if __name__ == '__main__': main()
