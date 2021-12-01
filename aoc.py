@@ -18,18 +18,10 @@ def run_solutions(year, day):
     puzzle_input = read_file(f'{path}/input.txt')
 
     print(f'\n--- AOC {year} day {day} ---')
-    result, ms = time_function(puzzle_input, module.part1)
-    print(f'part 1: {result} {ms:.3f}ms')
-    result, ms = time_function(puzzle_input, module.part2)
-    print(f'part 2: {result} {ms:.3f}ms')
-    try:
-        result, ms = time_function(puzzle_input, module.faster_part1)
-        print(f'faster part 1: {result} {ms:.3f}ms')
-    except: pass
-    try:
-        result, ms = time_function(puzzle_input, module.faster_part2)
-        print(f'faster part 2: {result} {ms:.3f}ms')
-    except: pass
+    try_solution(puzzle_input, module.part1, 'part 1\t')
+    try_solution(puzzle_input, module.part2, 'part 2\t')
+    try_solution(puzzle_input, module.faster_part1, 'faster part 1')
+    try_solution(puzzle_input, module.faster_part2, 'faster part 2')
     print()
 
 def gen_day(year, day):
@@ -69,10 +61,13 @@ def load_source(path):
     spec.loader.exec_module(module)
     return module
 
-def time_function(puzzle_input, fun):
-    t0 = time.perf_counter()
-    x = fun(puzzle_input)
-    t1 = time.perf_counter()
-    return x, (t1 - t0) * 1000
+def try_solution(puzzle_input, fun, name):
+    try:
+        t0 = time.perf_counter()
+        result = fun(puzzle_input)
+        t1 = time.perf_counter()
+        ms = (t1 - t0) * 1000
+        print(f'{name}\t{result}\t{ms:.3f}ms')
+    except: pass
 
 if __name__ == '__main__': main()
