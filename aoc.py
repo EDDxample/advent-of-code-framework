@@ -28,7 +28,7 @@ def gen_day(year, day):
     path = f'aoc/{year}/{int(day):02}'
     write_file(path+'/input.txt', get_input(year, day))
     # write_file(path+'/description.md', get_description(year, day))
-    write_file(path+'/solution.py', '\ndef part1(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef part2(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef faster_part1(puzzle_in: str):\n\traise \'not implemented yet\'\n\ndef faster_part2(puzzle_in: str):\n\traise \'not implemented yet\'\n')
+    write_file(path+'/solution.py', 'import re\n\ndef part1(puzzle_in: str):\n\tfor line in puzzle_in.splitlines():\n\t\tpass\n\treturn \'not implemented yet\'\n\ndef part2(puzzle_in: str):\n\treturn \'not implemented yet\'\n\ndef faster_part1(puzzle_in: str):\n\traise \'not implemented yet\'\n\ndef faster_part2(puzzle_in: str):\n\traise \'not implemented yet\'\n')
     print(f'problem description: https://adventofcode.com/{year}/day/{day}')
 
 def get_input(year, day):
