@@ -40,7 +40,7 @@ def get_input(year, day):
 
 def get_example(year, day):
     try:
-        page = requests.get('https://adventofcode.com/2021/day/4').text
+        page = requests.get(f'https://adventofcode.com/{year}/day/{day}').text
         return page.split('<pre><code>')[1].split('</code></pre>')[0]
     except:
         return ''
