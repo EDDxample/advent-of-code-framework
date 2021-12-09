@@ -18,7 +18,7 @@ def part2(s: str, ex: str):
 	# Ln = number of n segments
 	# 
 	# base: 1 (L2), 4 (L4), 7 (L3), 8 (L7)
-	# 6: L6 that lacks part of 1, also define 1 segments
+	# 6: L6 that lacks part of 1, also define top and low 1 segments
 	# 0: L6 that lacks part of 4
 	# 9: last L6
 	# 5: L5 that lacks 1's top segment
