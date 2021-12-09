@@ -22,7 +22,7 @@ def part2(s: str, ex: str):
 	# 0: L6 that lacks part of 4
 	# 9: last L6
 	# 5: L5 that lacks 1's top segment
-	# 2: L5 that lacks 1's bot segment
+	# 2: L5 that lacks 1's low segment
 	# 3: last L5
 	for line in s.splitlines():
 		line = [''.join(sorted(c)) for c in line.split(' ')]
