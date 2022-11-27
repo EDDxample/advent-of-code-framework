@@ -1,7 +1,9 @@
+from itertools import permutations
 from dataclasses import dataclass
 from typing import Callable, DefaultDict, List
 from colorama import Fore, Style
 import random
+
 
 @dataclass
 class Entity:
@@ -11,10 +13,12 @@ class Entity:
     armor: int = 0
     spent: int = 0
 
+
 @dataclass
 class Spell:
     cost: int
     timer: int
+
 
 NEXT_ACTION = {
     'MISSILE':  'DRAIN',
@@ -24,6 +28,7 @@ NEXT_ACTION = {
     'RECHARGE': 'MISSILE'
 }
 
+
 def battle(actions, part2=False):
     boss = Entity(71, attack=10)
     # boss = Entity(55, attack=8)
@@ -31,33 +36,34 @@ def battle(actions, part2=False):
 
     spells = {
         # name: [cost, ticks_left]
-        'MISSILE':  Spell( 53,0),
-        'DRAIN':    Spell( 73,0),
-        'SHIELD':   Spell(113,0),
-        'POISON':   Spell(173,0),
-        'RECHARGE': Spell(229,0),
+        'MISSILE':  Spell(53, 0),
+        'DRAIN':    Spell(73, 0),
+        'SHIELD':   Spell(113, 0),
+        'POISON':   Spell(173, 0),
+        'RECHARGE': Spell(229, 0),
     }
 
     turn, turn_c = 0, 0
     my_turn = True
 
     while True:
-        if len(actions) -1 < turn_c:
+        if len(actions) - 1 < turn_c:
             return 0
 
         if spells['POISON'].timer:
             spells['POISON'].timer -= 1
-            boss.hp -=3
+            boss.hp -= 3
 
         if spells['SHIELD'].timer:
             spells['SHIELD'].timer -= 1
             player.armor = 7
-        else: player.armor = 0
+        else:
+            player.armor = 0
 
         if spells['RECHARGE'].timer:
             spells['RECHARGE'].timer -= 1
             player.mana += 101
-        
+
         if my_turn:
 
             if part2:
@@ -74,34 +80,35 @@ def battle(actions, part2=False):
 
             # execute spell
 
-            if   spell_name == 'MISSILE':
+            if spell_name == 'MISSILE':
                 boss.hp -= 4
             elif spell_name == 'DRAIN':
                 boss.hp -= 2
                 player.hp += 2
             elif spell_name == 'SHIELD':
                 if spell.timer:
-                    return 0 # cannot use active effect
+                    return 0  # cannot use active effect
                 spell.timer = 6
             elif spell_name == 'POISON':
                 if spell.timer:
-                    return 0 # cannot use active effect
+                    return 0  # cannot use active effect
                 spell.timer = 6
             elif spell_name == 'RECHARGE':
                 if spell.timer:
-                    return 0 # cannot use active effect
+                    return 0  # cannot use active effect
                 spell.timer = 5
-            
+
             if player.mana < 0:
                 return 0
-        
-        if boss.hp <= 0: return player.spent
+
+        if boss.hp <= 0:
+            return player.spent
 
         if not my_turn:
             player.hp -= max(boss.attack - player.armor, 1)
             if player.hp <= 0:
                 return 0
-        
+
         if my_turn:
             turn_c += 1
         my_turn = not my_turn
@@ -110,13 +117,11 @@ def battle(actions, part2=False):
 
 def iterate_actions(actions: List[str], pos: int):
     actions[pos] = NEXT_ACTION[actions[pos]]
-    
+
     if actions[pos] == 'MISSILE':
         if pos+1 <= len(actions):
             iterate_actions(actions, pos + 1)
 
-
-from itertools import permutations
 
 def part1(puzzle_in: str):
 
@@ -130,14 +135,16 @@ def part1(puzzle_in: str):
 
     for i in range(1000000):
         result = battle(actions)
-        if i % 500000 == 0: print(10000000 - i)
+        if i % 500000 == 0:
+            print(10000000 - i)
         if result and result < min_spent:
             min_spent = result
             print(i, min_spent, actions)
         iterate_actions(actions, 0)
     return min_spent
 
-def part2(puzzle_in: str): # this potentially solves it
+
+def part2(puzzle_in: str):  # this potentially solves it
     min_spent = 1000000
     actions = ['MISSILE'] * 50
 
@@ -146,18 +153,21 @@ def part2(puzzle_in: str): # this potentially solves it
 
     for i in range(15000000):
         result = battle(actions, part2=True)
-        if i % 500000 == 0: print(15000000 - i)
+        if i % 500000 == 0:
+            print(15000000 - i)
         if result and result < min_spent:
             min_spent = result
             print(min_spent)
         iterate_actions(actions, 0)
     return min_spent
 
+
 def faster_part1(puzzle_in: str):
-    raise 'not implemented yet'
+    raise Exception('not implemented yet')
+
 
 def faster_part2(puzzle_in: str):
-    raise 'not implemented yet'
+    raise Exception('not implemented yet')
 
 
 # p1 1824
