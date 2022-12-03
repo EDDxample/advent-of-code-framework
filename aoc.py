@@ -46,7 +46,7 @@ def gen_day(year, day):
 
     write_file(path+'/example.txt', get_example(year, day))
 
-    write_file(path+'/solution.py', 'import re\n\ndef part1(s: str, ex: str):\n\ts = ex # example mode\n\tfor line in s.splitlines():\n\t\tpass\n\treturn Exception(\'not implemented yet\')\n\ndef part2(s: str, ex: str):\n\treturn Exception(\'not implemented yet\')\n\ndef faster_part1(s: str, ex: str):\n\traise Exception(\'not implemented yet\')\n\ndef faster_part2(s: str, ex: str):\n\traise Exception(\'not implemented yet\')\n')
+    write_file(path+'/solution.py', 'import re\n\ndef part1(s: str, ex: str):\n    s = ex # example mode\n    for line in s.splitlines():\n        pass\n    return Exception(\'not implemented yet\')\n\ndef part2(s: str, ex: str):\n    return Exception(\'not implemented yet\')\n\ndef faster_part1(s: str, ex: str):\n    raise Exception(\'not implemented yet\')\n\ndef faster_part2(s: str, ex: str):\n    raise Exception(\'not implemented yet\')\n')
     print(f'problem description: https://adventofcode.com/{year}/day/{day}')
 
 
